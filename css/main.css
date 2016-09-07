@@ -903,6 +903,8 @@ select {
         margin-right: 0; } }
   .promo--signup {
     background-color: #F6F5F1; }
+    .promo--signup h4 {
+      font-family: 'GT-Walsheim-Pro-Light'; }
     @media (min-width: 769px) {
       .promo--signup h4 {
         margin-top: 0; } }
