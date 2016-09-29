@@ -202,7 +202,7 @@ var UI = {
     if(transition) {
       var sheet = UI.genSheet(e);
       var photo = UI.currentColleague[0].picture;
-      sheet.style.background = 'url(../assets/images/'+photo+'.png)';
+      sheet.style.background = 'url(assets/images/'+photo+'.png)';
       sheet.style.backgroundSize = '100%';
       $class('mobile-container').appendChild(sheet);
       $class(nextView).style.display = 'block';
