@@ -1,5 +1,8 @@
-input[type="text"] {
+input[type="text"],
+input[type="date"] {
   display: block;
+  width: calc(100% - 80px);
+  margin: 0 $margin-airy;
   height: 60px;
   padding: 0 15px;
   border: 1px solid map-get($grayscale, 2);
@@ -23,23 +26,11 @@ input[type="text"] {
     border: 1px solid map-get($grayscale, 2);
     cursor: not-allowed;
   }
+}
 
-  @include media(">tablet") {
-    min-width: 300px;
-  }
-
-  @include media("<tablet") {
-    min-width: none;
-    width: 100%;
-
-    & + button {
-      margin-top: 15px;
-    }
-  }
-
-  & + label {
-    margin-top: 30px;
-  }
+input[type="date"] {
+  -webkit-appearance: textfield;
+  line-height: 60px;
 }
 
 .input-label {
@@ -52,10 +43,9 @@ input[type="text"] {
 
   input[type="checkbox"] {
     -webkit-appearance: none;
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    margin: 25px 0 0 $margin-airy;
     border: 1px solid map-get($grayscale, 2);
     transition: background-color 0.25s ease;
   }
@@ -69,7 +59,7 @@ input[type="text"] {
   input[type="checkbox"] + label {
     position: relative;
     margin-left: 15px;
-    line-height: 45px;
+    line-height: 30px;
     vertical-align: bottom;
   }
 
@@ -80,8 +70,8 @@ input[type="text"] {
     & + label:before {
       content: "✓";
       position: absolute;
-      left: -42px;
-      top: -8px;
+      left: -35px;
+      top: -3px;
       color: #fff;
       pointer-events: none;
     }
@@ -112,44 +102,98 @@ input[type="text"] {
         justify-content: flex-end;
       }
     }
+  }
 
-    @include media("<desktop") {
-      flex-flow: row;
-      text-align: left;
-      flex-wrap: wrap;
-
-      .radio-button {
-        width: 50%;
-      }
-    }
+  &--colleague {
 
     label {
-      @include media(">tablet") {
-        text-align: left;
-        min-height: 300px;
-      }
-      @include media("<tablet") {
-        margin: -2px;
-      }
-      @include media(">phone") {
-        padding: 30px;
-      }
-      @include media("<phone") {
-        padding: 15px;
-      }
+      display: inline-block;
+      width: 148px;
+      height: 100%;
+      padding: 20px;
+      color: map-get($grayscale, 3);
+      box-shadow: 0 0 0 1px $main-accent;
+      @extend .label;
+    }
+
+    label img,
+    .chosen-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 50%;
+        pointer-events: none;
+    }
+
+    span {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input:checked + label {
+      background-color: $main-accent;
+      color: $deepburp;
     }
   }
 
-  &--text {
+  &--filter {
 
-    label {
-      padding: 15px 50px;
-      width: 100%;
+    label span {
+      margin-top: 0;
+    }
+    input:checked + label {
+      box-shadow: inset 0 0 0 1px $main-accent;
+      color: $deepburp;
+
+      img {
+        opacity: 1;
+      }
     }
 
-    @include media("<tablet") {
-      flex-flow: column;
-      text-align: left;
+    label {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      padding: 6px 30px;
+      width: 100%;
+      box-shadow: none;
+      color: map-get($grayscale, 3);
+      @extend .label;
+    }
+
+    label img {
+      opacity: .4;
+      width: 10px;
+      margin-left: 5px;
+      margin-bottom: -2px;
+      pointer-events: none;
+    }
+  }
+
+  &--buttons {
+
+    margin: 0 40px;
+
+    .radio-button {
+      display: inline-block;
+      width: 100%;
+
+      & + .radio-button label {
+        margin-top: 11px;
+      }
+    }
+
+    label {
+      width: 100%;
+      background-color: #fff;
+      color: $main-accent;
+      box-shadow: inset 0 0 0 1px $main-accent;
+    }
+
+    input:checked + label {
+      background-color: $main-accent;
+      color: #fff;
     }
   }
 }
@@ -159,21 +203,10 @@ input[type="text"] {
 }
 
 .radio-button label {
-  display: inline-block;
   margin: 0;
-  background-color: #fff;
-  border: 1px solid map-get($grayscale, 2);
-  font-size: em(18);
-  font-weight: 500;
-  border-radius: $borderradius;
   transition: all 0.25s ease;
   overflow: hidden;
-}
-
-.radio-button input[type="radio"]:checked + label {
-  color: $main-accent;
-  border: 1px solid $main-accent;
-  box-shadow: inset 0 0 0 2px $main-accent;
+  text-align: center;
 }
 
 select {
@@ -184,5 +217,23 @@ select {
 
   &:after {
     content:"Mug";
+  }
+}
+
+textarea {
+  margin: 0 40px;
+  width: calc(100% - 80px);
+  height: 440px;
+  font: inherit;
+  padding: $margin-airy/2;
+  border-radius: 0;
+  -webkit-appearance: none;
+  border: 1px solid map-get($grayscale, 2);
+
+  &:focus {
+    border: 1px solid $deepburp;
+    width: 100%;
+    margin: 0;
+    outline: none;
   }
 }

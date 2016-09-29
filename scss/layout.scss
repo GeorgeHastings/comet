@@ -1,110 +1,481 @@
-
 .wrapper {
-	padding-top: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: inherit;
+}
 
-	&.blue-border {
-	  border-left: 10px solid $main-accent;
-	  border-right: 10px solid $main-accent;
-	  height: auto;
+.mobile-container {
+	position: relative;
+	width: 375px;
+	height: 657px;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.header {
+	display: flex;
+	width: 100%;
+	height: 60px;
+	margin-top: 10px;
+	flex-direction: row;
+
+	&--main {
+		align-items: center;
+		justify-content: center;
+	}
+
+	&--new-comet {
+		align-items: center;
+		justify-content: center;
 	}
 }
 
-.wrapper.question-wrapper {
-	height: 100%;
-	overflow: hidden;
+.back-arrow {
+	position: absolute;
+	top: 15px;
+	left: 10px;
+	padding: 10px;
+	z-index: 1;
+	transform: translate3d(-50px, 0px, 0);
+	transition: transform 0.65s $ease;
 
-	.container-rail {
-		height: 100%;
+	&.show {
+		transform: translate3d(0px, 0px, 0);
+	}
+}
+
+.close-new-comet {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	padding: 10px;
+}
+
+.colleague-detail {
+	display: none;
+}
+
+.sub-header {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.browse-colleagues {
+}
+
+.colleague-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	// justify-content: space-around;
+	height: 440px;
+	padding: 0 $margin-standard;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	white-space: nowrap;
+	@extend .clearfix;
+}
+
+.colleague {
+	position: relative;
+	display: flex;
+	align-items: baseline;
+	justify-content: flex-end;
+	flex-flow: column;
+	padding: 15px;
+	min-width: 150px;
+	height: 190px;
+	margin-right: $margin-standard/2;
+	margin-bottom: $margin-standard/2;
+	box-shadow: $cardshadow;
+	background-size: cover;
+	opacity: 0;
+	transform: scale(0.8);
+	animation: popin 0.65s $ease;
+	animation-fill-mode: forwards;
+
+	@for $i from 1 through 10 {
+		&:nth-child(#{$i}) {
+			animation-delay: #{$i/12}s;
+		}
+  }
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height:100%;
+		background: $tint;
+		z-index: 0;
 	}
 
-	@include media("<tablet") {
-		overflow: auto;
+	.colleague-name {
+		display: block;
+		position: relative;
+		z-index: 1;
+		color: #fff;
+		font-family: 'Dosis-Medium';
+		font-size: 16px;
+	}
 
-		.container-rail {
-			height: auto;
+	.commitment-count {
+		display: flex;
+		flex-flow: row;
+		z-index: 1;
+		margin-top: 10px;
+		color: #fff;
+		font-size: 12px;
+		color: map-get($grayscale, 4);
+
+		.count-wrap {
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
+			align-items: space-around;
+
+			&:last-child {
+				margin-left: 15px;
+			}
+
+			img {
+				// opacity: 0.5;
+			}
+		}
+	}
+	.count {
+		margin-left: 5px;
+		@extend .label;
+	}
+}
+
+
+//Comet Cards
+
+.comet-container {
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+.comet-slider {
+	display: flex;
+	width: auto;
+	padding-bottom: 10px;
+	margin: $margin-standard/2 $margin-airy;
+}
+
+
+
+.comet {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	min-width: 295px;
+	height: 400px;
+	padding: $margin-standard;
+	box-shadow: $cardshadow;
+	transform: translate3d(50px,0,0);
+	opacity: 0;
+	animation: slidein 0.65s $ease;
+	animation-fill-mode: forwards;
+
+	@keyframes slidein {
+		from {
+			opacity: 0;
+			transform: translate3d(50px,0,0);
+		}
+		to {
+			opacity: 1;
+			transform: translate3d(0px,0,0);
+		}
+	}
+
+	&:nth-child(2) {
+		animation-delay: .15s;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height:100%;
+		background: $tint;
+		z-index: 0;
+	}
+
+	& + .comet {
+		margin-left: $margin-airy/2;
+	}
+
+	&:last-child{
+		margin-right: $margin-airy/2;
+	}
+}
+
+.comet-info {
+	position: relative;
+	z-index: 1;
+	& > * {
+		margin-top: $margin-standard/2;
+	}
+}
+
+.comet-flag {
+	display: inline-block;
+	height: 30px;
+	margin-left: -$margin-standard;
+	color: $deepburp;
+	font-size: 14px;
+	line-height: 30px;
+	padding: 0 30px;
+	font-family: 'Dosis-SemiBold';
+	background-color: $pinkberry;
+}
+
+.comet-title {
+	font-size: 24px;
+	font-family: 'Dosis-SemiBold';
+	color:#fff;
+}
+
+.comet-duedate {
+	font-size: 16px;
+	font-family: 'Dosis-Book';
+	color: map-get($grayscale, 3);
+
+	span {
+		margin-right: 5px;
+	}
+}
+
+.comet-detail {
+	display: none;
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	transform: translate3d(0,100%,0);
+	animation: detailIn .65s $ease;
+	animation-fill-mode: forwards;
+
+	@keyframes detailIn {
+		0% {
+			opacity: 0;
+			transform: translate3d(0,100%,0);
+		}
+		100% {
+			opacity: 1;
+			transform: translate3d(0,0%,0);
+		}
+	}
+
+	.detail-back-arrow {
+		position: absolute;
+		top: 15px;
+		left: 10px;
+		padding: 10px;
+	}
+
+	.comet-photo {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		height: 175px;
+		width: 100%;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height:100%;
+			background: $tint;
+			z-index: 0;
+		}
+	}
+
+	.comet-flag {
+		position: relative;
+		margin-left: 0;
+		z-index: 1;
+	}
+
+	.comet-actions {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+		text-align: center;
+		padding: 10px 0;
+		border-bottom: 1px solid map-get($grayscale, 1);
+		background-color: #fff;
+
+		.lnr {
+			font-size: 20px;
+			margin-bottom: 10px;
+			display: block;
+			color: map-get($grayscale, 7);
+		}
+		color: map-get($grayscale, 3);
+
+		@extend .label;
+	}
+
+	.comet-detail-info {
+		padding: $margin-standard;
+		background-color: #fff;
+		height: 100%;
+
+		.label {
+			margin-top: $margin-standard;
+			color: $pinkberry;
+		}
+	}
+	.comet-detail-title {
+		font-size: 32px;
+		font-family: 'Dosis-SemiBold';
+	}
+}
+
+.button-container {
+	position: absolute;
+	width: 315px;
+	margin:0 auto;
+	left: 0;
+	right: 0;
+	bottom: 30px;
+
+	.btn {
+		width: 100%;
+	}
+
+	&.static {
+		position: static;
+		margin-top: 20px;
+	}
+}
+
+.new-comet {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	transform: translate3d(0,100%,1px);
+	transition: transform 0.65s $ease;
+
+	&.show {
+		transform: translate3d(0,0%,1px);
+	}
+}
+
+.input-container {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	height: calc(100% - 60px);
+	transition: transform 0.65s $ease;
+}
+
+.input-content {
+	position: relative;
+	min-width: 375px;
+	height: 100%;
+	background-color: map-get($grayscale, 1);
+	overflow-y: scroll;
+}
+
+.choose-colleague {
+	justify-content: center;
+}
+
+.colleague-choice {
+	background-color: #fff;
+}
+
+.tinylabel {
+	position: relative;
+
+	& + .tinylabel {
+		margin-top: 25px;
+	}
+
+	&:before {
+		content: attr(data-label);
+		position: absolute;
+		background-color: #fff;
+		top: -10px;
+		left: 40px;
+		padding: 1px 3px;
+		border: 1px solid $main-accent;
+		color: $main-accent;
+		@extend .label;
+	}
+}
+
+//UTILS
+
+.transition-sheet {
+	position: absolute;
+	z-index: 2;
+	background-color: #fff;
+	animation: load .65s $ease;
+	animation-fill-mode: forwards;
+	transform: translate3d(0,0,1px);
+
+	@keyframes load {
+		0% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 1;
+			top: 0;
+			left:0;
+			width: 375px;
+			height: 657px;
 		}
 	}
 }
 
-.sub-section {
-	border-bottom: 1px solid map-get($grayscale, 2);
-	padding-bottom: 50px;
-
-	& + .sub-section {
-		padding-top: 50px;
-	}
-
-	.cards {
-		margin-top: 50px;
-	}
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
-.container-rail {
-	display: flex;
-	flex-direction: row;
+//ANIMATIONS
 
-	@include media("<tablet") {
-		flex-direction: column;
-	}
-}
+.pop-in {
+	opacity: 0;
+	transform: scale(0.8);
+	animation: popin 0.65s $ease;
+	animation-fill-mode: forwards;
 
-.content {
-	width: 100%;
-	padding-top: 50px;
-	padding-left: 70px;
-	padding-right: 50px;
-
-	@include media("<tablet") {
-		padding: 30px;
-	}
-}
-
-//question flow demo
-
-.question-container {
-	width: 100%;
-
-	.question {
-		display: none;
-	}
-
-	.question:first-child {
-		display: block;
-	}
-
-	.radio-group {
-		animation-delay: .05s;
-	}
-
-	@include media(">=tablet") {
-		padding: 50px 50px 200px 50px;
-		overflow-y: scroll;
-	}
-
-	@include media("<tablet") {
-		padding: 30px;
-		overflow-y: auto;
-	}
-}
-
-.button-footer {
-	position: fixed;
-	z-index: 99;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	bottom: 0;
-	padding: 20px 0px;
-	background-color: #fff;
-	border-top: 1px solid map-get($grayscale, 1);
-
-	@include media(">=tablet") {
-		width: calc(100% - 640px);
-	}
-
-	@include media("<tablet") {
-		left: 0;
-		width: 100%;
-		padding: 10px;
+	@keyframes popin {
+		0% {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 }

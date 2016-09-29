@@ -1,20 +1,20 @@
-@import 'include-media';
 @import 'variables';
 @import 'utilities';
 @import 'layout';
 @import 'typography';
-@import 'colors';
 @import 'buttons';
 @import 'form';
-@import 'table';
-@import 'lists';
-@import 'navigation';
-@import 'modules';
-@import 'misc';
 @include font-face(GT-Walsheim-Pro-Light, fonts/GT-Walsheim-Pro-Light);
 @include font-face(GT-Walsheim-Pro-Medium, fonts/GT-Walsheim-Pro-Medium);
 @include font-face(GT-Walsheim-Pro-Bold, fonts/GT-Walsheim-Pro-Bold);
 @include font-face(Linearicons-free, fonts/Linearicons-free);
+@include font-face(Dosis-Bold, fonts/Dosis-Bold);
+@include font-face(Dosis-Book, fonts/Dosis-Book);
+@include font-face(Dosis-ExtraBold, fonts/Dosis-ExtraBold);
+@include font-face(Dosis-ExtraLight, fonts/Dosis-ExtraLight);
+@include font-face(Dosis-Light, fonts/Dosis-Light);
+@include font-face(Dosis-Medium, fonts/Dosis-Medium);
+@include font-face(Dosis-SemiBold, fonts/Dosis-SemiBold);
 
 * {box-sizing: border-box;}
 
@@ -23,94 +23,13 @@ body {
 	height: 100%;
 	width: 100%;
   margin: 0;
+	background-color: #000;
+	overflow: hidden;
+	-webkit-font-smoothing: antialiased;
 }
 
 body {
-	font-family: 'GT-Walsheim-Pro-Light';
-	font-size: 20px;
-
-	@include media("<desktop") {
-		font-size: 18px;
-	}
-	@include media("<tablet") {
-		font-size: 16px;
-	}
-}
-
-.container {
-  height: inherit;
-	padding: 50px;
-	margin-left: 240px;
-
-	@include media("<desktop") {
-		margin-left: 0px;
-    padding: 0;
-	}
-}
-
-.side-bar {
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100vh;
-	width: 240px;
-	padding: 30px;
-	color: #585858;
-	font-size: 16px;
-	background-color: #000;
-
-  .logo span {
-    color: #fff;
-  }
-
-	.nav {
-		padding-left: 20px;
-	}
-
-	.nav a {
-		color: inherit;
-		line-height: 40px;
-		text-decoration: none;
-
-		&:target {
-			color: #fff;
-		}
-	}
-
-	@include media("<desktop") {
-		transform: translate3d(-240px, 0, 0);
-	}
-}
-
-section {
-	padding: 50px 0;
-}
-
-.border-wrap {
-	position: relative;
-	padding: 50px 30px 30px 30px;
-	margin-top: 50px;
-	border: 1px solid #eee;
-	// background-color: #fff;
-
-	&:before {
-		position: absolute;
-		content: attr(data-type);
-		top: -20px;
-		padding: 5px 10px;
-		font-size: 14px;
-		background-color: #fff;
-		border: 1px solid #eee;
-	}
-
-  &--dark {
-    background-color: map-get($grayscale, 5);
-    border: none;
-
-		&:before {
-			color: #fff;
-			border: none;
-			background-color: map-get($grayscale, 5);
-		}
-  }
+	font-family: 'Dosis-Book', sans-serif;
+	font-size: 18px;
+	color: $deepburp;
 }
