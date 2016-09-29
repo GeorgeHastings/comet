@@ -228,7 +228,7 @@ var UI = {
     for(var i = 1; i < Data.colleagues.length; i++) {
       var el = UI.templates.colleagueCard.content.cloneNode(true);
       var colleague = el.querySelector('.colleague');
-      colleague.style.background = 'url("../assets/images/'+Data.colleagues[i].picture+'.png")';
+      colleague.style.background = 'url("assets/images/'+Data.colleagues[i].picture+'.png")';
       colleague.style.backgroundSize = 'cover';
       colleague.setAttribute('data-colleague-id', i);
       colleague.onclick = UI.nav.colleagueDetail;
@@ -286,7 +286,7 @@ var UI = {
       var el = UI.templates.comet.content.cloneNode(true);
       var comet = el.querySelector('.comet');
       comet.setAttribute('data-comet-id', i);
-      comet.style.background = 'url("../assets/images/'+colleague[0].picture+'.png")';
+      comet.style.background = 'url("assets/images/'+colleague[0].picture+'.png")';
       comet.style.backgroundSize = 'cover';
       if(UI.filteredBy === 0) {
         comet.querySelector('.comet-flag').innerHTML = 'You commited to '+colleague[0].name+':';
