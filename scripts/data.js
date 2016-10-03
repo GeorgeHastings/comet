@@ -14,8 +14,8 @@ var Data = {
         },
         {
           who: 2,
-          what: 'Keep lookin good',
-          why: 'Because you deserve it',
+          what: 'Watch Westworld',
+          why: 'Because its good',
           success: 'Looks good',
           when: 'by Friday'
         },

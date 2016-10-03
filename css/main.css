@@ -494,6 +494,23 @@ h1, h2, h3, h4 {
     line-height: 45px;
     font-size: 16px; }
 
+.full-transition:after {
+  position: absolute;
+  content: "";
+  top: -57px;
+  width: 375px;
+  left: 0px;
+  right: 0;
+  z-index: 99;
+  margin: 0 auto;
+  height: 667px;
+  background-color: #31294F;
+  transform-origin: 50% 93%;
+  transform: scale(0.84, 0.07);
+  transition: all 0.65s cubic-bezier(0.52, 0.01, 0.16, 1); }
+.full-transition:hover:after {
+  transform: scale(1, 1); }
+
 input[type="text"], select,
 input[type="date"] {
   display: block;
