@@ -155,14 +155,14 @@ var UI = {
       var comet = {};
       var committer;
       if(UI.currentColleague) {
-        committer = UI.currentColleague.id;
+        committer = UI.currentColleague[0].id;
+        console.log(UI.currentColleague);
       }
       else {
         committer = 0;
       }
       var committee = UI.newComet.values['who'];
       committee = map(Data.colleagues, 'name', committee);
-      console.log(committee);
       comet.who = committee[0].id;
       comet.what = $id('what').value;
       comet.why = $id('why').value;
