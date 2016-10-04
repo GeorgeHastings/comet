@@ -17,7 +17,7 @@
 				</div>
 				<section class="browse-colleagues">
 					<div class="sub-header">
-						<span class="label">Your colleages</span>
+						<span class="label">Your commitments</span>
 					</div>
 					<div class="colleague-container">
 						<template id="colleague_card">
@@ -26,11 +26,11 @@
 								<div class="commitment-count">
 									<div class="count-wrap">
 										<img src="assets/images/tinydown2.svg">
-										<span class="count">3</span>
+										<span class="count to-me">3</span>
 									</div>
 									<div class="count-wrap">
 										<img src="assets/images/tinyup2.svg">
-										<span class="count">3</span>
+										<span class="count from-me">3</span>
 									</div>
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 					</section>
 				</section>
 				<section class="button-container">
-					<div class="btn btn--big btn--main" onclick="UI.newComet.showNewComet()">New Commitment</div>
+					<div class="btn btn--big btn--main" onclick="UI.nav.openChooseWho()">New Commitment</div>
 				</section>
 					<div class="comet-detail">
 						<template id="cometDetail">
@@ -88,6 +88,11 @@
 								<p class="success"></p>
 							</section>
 						</template>
+					</div>
+					<div class="choose-who">
+						<div class="btn btn--big btn--main--ghost" onclick="UI.newComet.showNewComet(event)" data-who="committer">From Me</div>
+						<div class="btn btn--big btn--main--ghost" onclick="UI.newComet.showNewComet(event)" data-who="committee">To Me</div>
+						<div class="btn btn--big" onclick="UI.nav.closeChooseWho()">Cancel</div>
 					</div>
 					<div class="new-comet">
 						<div class="header header--new-comet">
@@ -134,24 +139,6 @@
 							<div class="input-content">
 								<div class="sub-header label">When do you need this by?</div>
 								<input type="date" id="when" placeholder="Pick a day">
-								<!-- <div class="radio-group radio-group--buttons">
-									<div class="radio-button">
-										<input id="eod" type="radio" name="whenchoices" value="eod" onclick="UI.newComet.activateBtn()">
-										<label for="eod" class="btn btn--big">End of day</label>
-									</div>
-									<div class="radio-button">
-										<input id="tomorrow" type="radio" name="whenchoices" value="tomorrow" onclick="UI.newComet.activateBtn()">
-										<label for="tomorrow" class="btn btn--big">Tomorrow</label>
-									</div>
-									<div class="radio-button">
-										<input id="day" type="radio" name="whenchoices" value="day" onclick="UI.newComet.activateBtn()">
-										<label for="day" class="btn btn--big">Friday</label>
-									</div>
-									<div class="radio-button">
-										<input id="nextweek" type="radio" name="whenchoices" value="nextweek" onclick="UI.newComet.activateBtn()">
-										<label for="nextweek" class="btn btn--big">Next Week</label>
-									</div>
-								</div> -->
 								<section class="button-container">
 									<div class="btn btn--big btn--main" onclick="UI.newComet.navQuestion(1)">Next</div>
 								</section>

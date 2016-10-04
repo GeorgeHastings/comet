@@ -366,6 +366,48 @@
 	}
 }
 
+.choose-who {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 220px;
+	background-color: #fff;
+	padding: $margin-airy;
+	transform: translate3d(0,220px,0);
+	transition: transform 0.65s $ease;
+	pointer-events: none;
+
+	&:before {
+		position: absolute;
+		content: "";
+		height: 700px;
+		width: 100%;
+		top: -700px;
+		left: 0;
+		opacity: 0;
+		background-color: rgba(10,0,35,.5);
+		transition: opacity 0.65s $ease;
+	}
+
+	.btn {
+		width: 100%;
+		display: block;
+	}
+
+	.btn + .btn {
+		margin-top: 15px;
+	}
+
+	&.show {
+		transform: translate3d(0,0px,0);
+		pointer-events: auto;
+
+		&:before {
+			opacity: 1;
+		}
+	}
+}
+
 .new-comet {
 	position: absolute;
 	top: 0;
@@ -374,7 +416,7 @@
 	height: 100%;
 	background-color: #fff;
 	transform: translate3d(0,100%,1px);
-	transition: transform 0.65s $ease;
+	transition: transform 0.5s $ease;
 
 	&.show {
 		transform: translate3d(0,0%,1px);

@@ -46,6 +46,12 @@ var UI = {
       $class('back-arrow').onclick = UI.nav.browseColleagues;
       return UI.transition(event, 'colleague-detail', false);
     },
+    openChooseWho: function() {
+      $class('choose-who').classList.add('show');
+    },
+    closeChooseWho: function() {
+      $class('choose-who').classList.remove('show');
+    }
   },
   bindToMany: function(elements, eventType, fn) {
     var els = $classes(elements);
@@ -56,9 +62,13 @@ var UI = {
   newComet: {
     currentQuestion: 0,
     values: {},
-    showNewComet: function() {
+    showNewComet: function(event) {
       $class('back-arrow').classList.remove('show');
       $class('new-comet').classList.add('show');
+      var myRole = event.target.getAttribute('data-who');
+      UI.newComet.values[myRole] = 0;
+      console.log(UI.newComet.values);
+      UI.nav.closeChooseWho();
     },
     hideNewComet: function() {
       this.currentQuestion = 0;
@@ -154,21 +164,22 @@ var UI = {
     create: function() {
       var comet = {};
       var committer;
-      if(UI.currentColleague) {
-        committer = UI.currentColleague[0].id;
-        console.log(UI.currentColleague);
+      var committee;
+      if(UI.newComet.values['committer'] === 0) {
+        committer = Data.colleagues[0];
+        committee = map(Data.colleagues, 'name', UI.newComet.values['who'])[0];
+        comet.who = committee.id;
       }
       else {
-        committer = 0;
+        committer = map(Data.colleagues, 'name', UI.newComet.values['who'])[0];
+        committee = 0;
+        comet.who = 0;
       }
-      var committee = UI.newComet.values['who'];
-      committee = map(Data.colleagues, 'name', committee);
-      comet.who = committee[0].id;
       comet.what = $id('what').value;
       comet.why = $id('why').value;
       comet.when = $id('when').value;
       comet.succes = $id('success').value;
-      Data.colleagues[committer].commitments.push(comet);
+      committer.commitments.push(comet);
       this.hideNewComet();
       UI.nav.browseColleagues();
     }
@@ -231,13 +242,15 @@ var UI = {
       colleague.style.background = 'url("assets/images/'+Data.colleagues[i].picture+'.png")';
       colleague.style.backgroundSize = 'cover';
       colleague.setAttribute('data-colleague-id', i);
+      colleague.querySelector('.to-me').innerHTML = Data.colleagues[i].commitments.length;
+      colleague.querySelector('.from-me').innerHTML = map(Data.colleagues[0].commitments, 'who', Data.colleagues[i].id).length;
       colleague.onclick = UI.nav.colleagueDetail;
       el.querySelector('.colleague-name').innerHTML = Data.colleagues[i].name;
       $class('colleague-container').appendChild(el);
     }
   },
   renderColleagueChoices: function() {
-    for(var i = 0; i < Data.colleagues.length; i++) {
+    for(var i = 1; i < Data.colleagues.length; i++) {
       var el = UI.templates.chooseColleague.content.cloneNode(true);
       var colleague = el.querySelector('.colleague-choice');
       colleague.onclick = UI.newComet.activateBtn;
@@ -301,8 +314,14 @@ var UI = {
     }
   },
   renderCometDetail: function(e) {
+    var comet;
     var id = e.target.getAttribute('data-comet-id');
-    var comet = UI.currentColleague[0].commitments[id];
+    if(UI.filteredBy === 0) {
+      comet = map(Data.colleagues[0].commitments, 'who', UI.currentColleague[0].id)[id];
+    }
+    else {
+      comet = UI.currentColleague[0].commitments[id];
+    }
     var el = UI.templates.cometDetail.content.cloneNode(true);
     $class('comet-detail').innerHTML = '';
     el.querySelector('.comet-photo').style.backgroundSize = 'cover';

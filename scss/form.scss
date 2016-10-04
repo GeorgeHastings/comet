@@ -106,6 +106,9 @@ input[type="date"] {
 
   &--colleague {
 
+    justify-content: flex-start;
+    margin-left: $margin-airy;
+
     label {
       display: inline-block;
       width: 148px;
