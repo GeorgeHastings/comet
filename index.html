@@ -90,7 +90,7 @@
 						</template>
 					</div>
 					<div class="choose-who">
-						<div class="btn btn--big btn--main--ghost" onclick="UI.newComet.showNewComet(event)" data-who="committer">From Me</div>
+						<div class="btn btn--big btn--main--ghost" data-who="committer">From Me</div>
 						<div class="btn btn--big btn--main--ghost" onclick="UI.newComet.showNewComet(event)" data-who="committee">To Me</div>
 						<div class="btn btn--big" onclick="UI.nav.closeChooseWho()">Cancel</div>
 					</div>
@@ -102,7 +102,7 @@
 						</div>
 						<div class="input-container">
 							<div class="input-content">
-								<div class="sub-header label">Who is this task for?</div>
+								<div class="sub-header flex-column label">Who will work on this? <span class="gray">Think about timelines, competencies and mood.</span></div>
 								<div class="choose-colleague radio-group radio-group--colleague">
 									<template id="chooseColleague">
 										<div class="colleague-choice radio-button">
@@ -111,27 +111,27 @@
 										</div>
 									</template>
 								</div>
-								<section class="button-container">
+								<!-- <section class="button-container">
 									<button class="btn btn--big btn--main" disabled onclick="UI.newComet.navQuestion(1)">Next</button>
-								</section>
+								</section> -->
 							</div>
 							<div class="input-content">
-								<div class="sub-header label">What is the task?</div>
-								<textarea id="what" placeholder="Explain the what..." onkeyup="UI.newComet.activateBtn()"></textarea>
+								<div class="sub-header label">Explain your request</div>
+								<textarea id="what" placeholder="Describe the request in simple terms" onkeyup="UI.newComet.activateBtn()"></textarea>
 								<section class="button-container">
 									<div class="btn btn--big" onclick="UI.newComet.navQuestion(1)">Skip</div>
 								</section>
 							</div>
 							<div class="input-content">
-								<div class="sub-header label">Why is this task important?</div>
-								<textarea id="why" placeholder="Explain the why..." onkeyup="UI.newComet.activateBtn()"></textarea>
+								<div class="sub-header label">Explain the why</div>
+								<textarea id="why" placeholder="Think big picture. What is the context behind the request?" onkeyup="UI.newComet.activateBtn()"></textarea>
 								<section class="button-container">
 									<div class="btn btn--big" onclick="UI.newComet.navQuestion(1)">Skip</div>
 								</section>
 							</div>
 							<div class="input-content">
 								<div class="sub-header label">What are the conditions for satisfaction?</div>
-								<textarea id="success" placeholder="Explain what success looks like..." onkeyup="UI.newComet.activateBtn()"></textarea>
+								<textarea id="success" placeholder="Think ahead. What does 'good' look like? What level of quality do you expect?" onkeyup="UI.newComet.activateBtn()"></textarea>
 								<section class="button-container">
 									<div class="btn btn--big" onclick="UI.newComet.navQuestion(1)">Skip</div>
 								</section>
@@ -144,8 +144,8 @@
 								</section>
 							</div>
 							<div class="input-content">
-								<div class="sub-header label">Review commitment</div>
-								<div class="review-colleage tinylabel" data-label="Who">
+								<!-- <div class="sub-header label">Review commitment</div> -->
+								<div class="review-colleague tinylabel" data-label="Who">
 									<select id="reviewWho"></select>
 								</div>
 								<div class="review-what tinylabel" data-label="What">
@@ -169,6 +169,13 @@
 								</section>
 							</div>
 						</div>
+					</div>
+					<div class="confirmation">
+						<div class="confirmation-info">
+							<img src="assets/images/check.svg">
+							<h2>Right On!</h2>
+							<span>You've created a new commitment</span>
+						<div>
 					</div>
 			</div>
 		</div>

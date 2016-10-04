@@ -69,6 +69,7 @@ var UI = {
       UI.newComet.values[myRole] = 0;
       console.log(UI.newComet.values);
       UI.nav.closeChooseWho();
+      $class('confirmation').classList.remove('show');
     },
     hideNewComet: function() {
       this.currentQuestion = 0;
@@ -109,9 +110,9 @@ var UI = {
       for (var i = 0; i < radios.length; i++) {
           if (radios[i].checked) {
             UI.newComet.values.who = radios[i].value;
-            btn.classList.add('btn--main');
-            btn.innerHTML = 'Next';
-            btn.disabled = false;
+            setTimeout(function() {
+              UI.newComet.navQuestion(1);
+            }, 250);
           }
       }
       if(textarea.value.length > 0) {
@@ -181,6 +182,7 @@ var UI = {
       comet.succes = $id('success').value;
       committer.commitments.push(comet);
       this.hideNewComet();
+      $class('confirmation').classList.add('show');
       UI.nav.browseColleagues();
     }
   },

@@ -75,10 +75,20 @@
   display: none; }
 
 .sub-header {
-  height: 50px;
+  height: auto;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px; }
+  .sub-header.flex-column {
+    flex-direction: column; }
+  .sub-header span {
+    display: block;
+    margin-top: 10px; }
+
+.browse-colleagues .sub-header {
+  margin-top: 0; }
 
 .colleague-container {
   display: flex;
@@ -91,6 +101,9 @@
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
   white-space: nowrap; }
+
+.colleague-detail .sub-header {
+  margin-top: 10px; }
 
 .colleague {
   position: relative;
@@ -395,6 +408,37 @@
     border: 1px solid #FF7378;
     color: #FF7378; }
 
+.review-colleague:first-child {
+  margin-top: 40px; }
+
+.confirmation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF7378;
+  color: #fff;
+  transform: translate3d(0, -100%, 0); }
+  .confirmation.show {
+    animation: interstitial 4s cubic-bezier(0, 0.99, 0, 0.99);
+    animation-fill-mode: backwards; }
+  .confirmation .confirmation-info {
+    text-align: center;
+    max-width: 150px; }
+    .confirmation .confirmation-info span {
+      opacity: 0.7; }
+@keyframes interstitial {
+  0% {
+    transform: translate3d(0, -100%, 0); }
+  10% {
+    transform: translate3d(0, 0%, 0); }
+  90% {
+    transform: translate3d(0, 0%, 0); }
+  100% {
+    transform: translate3d(0, 100%, 0); } }
 .transition-sheet {
   position: absolute;
   z-index: 2;
@@ -438,6 +482,8 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   font-family: 'Dosis-SemiBold';
   letter-spacing: 1.5px; }
+  .label.gray, .colleague .gray.count, .comet-detail .gray.comet-actions, .gray.tinylabel:before, .radio-group--colleague label.gray, .radio-group--filter label.gray {
+    color: #A3ADC2; }
 
 .header-text {
   font-size: 14px;
@@ -700,7 +746,7 @@ select {
 textarea {
   margin: 0 40px;
   width: calc(100% - 80px);
-  height: 440px;
+  height: 435px;
   font: inherit;
   padding: 20px;
   border-radius: 0;
